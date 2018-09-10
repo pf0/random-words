@@ -1,94 +1,26 @@
-let wordsList = ["Fernbedienung",
-"Rasierschaum",
-"Laderampe",
-"Lichterkette",
-"Rauhfasertapete",
-"Tannenbaumständer",
-"Siebträgermaschine",
-"Lampenfassung",
-"Schneeketten",
-"Konfettiregen",
-"Geschenkpapier",
-"Wollschal",
-"Schleifenbank",
-"Rundumleuchte",
-"Kugelbahn",
-"Schaukelpferd",
-"Verhaltensmuster",
-"Handcreme",
-"Räuchermännchen",
-"Querschläger",
-"Adventskalender",
-"Brillenputztuch",
-"Hauptgewinn",
-"Wäscheklammer",
-"Spiegelreflexkamera",
-"Pralinenschachtel",
-"Drehbuch",
-"Kinderstuhl",
-"Sonnenblumenöl",
-"Christbaumkugel",
-"Zungenkuss",
-"Ladegerät",
-"Schreihals",
-"Glühwein",
-"Osterhase",
-"Teppichklopfer",
-"Schokokringel",
-"Vollpfosten",
-"Sprudelwasser",
-"Kichstarter",
-"Eierlikör",
-"Neujahresgruß",
-"Glatteis",
-"Weihnachtsgans",
-"Lebkuchenherz",
-"Trostpreis",
-"Versuchskaninchen",
-"Regalboden",
-"Mistelzweig",
-"Hebamme",
-"Manschettenknopf",
-"Schneegestöber",
-"Renntier",
-"Winterstiefel",
-"Flussufer",
-"Pfauenfeder",
-"Ohrensessel",
-"Verlobungsring",
-"Nassrasur",
-"Garagentür",
-"Weihnachtspost",
-"Glasreiniger",
-"Intimpiercing",
-"Gießkanne",
-"Hackebeil",
-"Tiefkühlfach",
-"Treppenhaus",
-"Fahrradschlauch",
-"Kreißsaal",
-"Mitesser",
-"Sonnenbrand",
-"Baumhaus",
-"Sonnencreme",
-"Snowboard",
-"Klassenzimmer",
-"Gitarrenständer",
-"Erektionsstörung",
-"Diktator"];
+let wordsList = [];
 
+// AJAX  with listener
+const oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "https://pf0.github.io/random-words/wordsList.txt");
+oReq.send();
+ 
+ // EventListener for button
 let p = document.getElementById("newWordP");
 let btn = document.getElementById("newWordBtn");
-btn.addEventListener('click', function btnEventHandler(event){
+btn.addEventListener('click', function btnListener(event){
   displayRandomWord(p, wordsList);
 });
 
-document.addEventListener('DOMContentLoaded', function onLoad(event){
+// listener for AJAX
+function reqListener() {
+  wordsList = this.responseText.split(",\n");
+  console.log(wordsList);
   displayRandomWord(p, wordsList);
-});
+}
 
-
-
+// return random word from array
 function getRandomWord(wordsList) {
   
   let randomWord = "";
@@ -97,6 +29,7 @@ function getRandomWord(wordsList) {
   
 }
 
+// sets p's innerHTML to randomWord
 function displayRandomWord(wordLabel, wordsList) {
   let randomWord = getRandomWord(wordsList);
   
