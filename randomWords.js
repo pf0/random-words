@@ -104,5 +104,3 @@ function displayRandomWord(wordLabel, wordsList) {
   return true;
   
 }
-
-window.onload = getRandomWord(p, wordsList);
